@@ -19,7 +19,7 @@ AI-powered mobile application that automatically evaluates handwritten mathemati
 <p align="center">
   <img src="img/img (5).png" width="200" alt="Screenshot 5"/>
   <img src="img/img (6).png" width="200" alt="Screenshot 6"/>
-  <img src="img/img (7).png" width="200" alt="Screenshot 7"/>
+  <img src="img/img (7).jpeg" width="200" alt="Screenshot 7"/>
   <img src="img/img (8).png" width="200" alt="Screenshot 8"/>
 </p>
 
