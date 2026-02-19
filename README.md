@@ -1,97 +1,134 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📐 MathsEvaluator
 
-# Getting Started
+AI-powered mobile application that automatically evaluates handwritten mathematics answer sheets using GPT-4 Vision.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+![React Native](https://img.shields.io/badge/React_Native-0.83-61DAFB?logo=react)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi)
+![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?logo=mongodb)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4_Vision-412991?logo=openai)
 
-## Step 1: Start Metro
+## 📱 Screenshots
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+<p align="center">
+  <img src="img/img (1).png" width="200" alt="Screenshot 1"/>
+  <img src="img/img (2).png" width="200" alt="Screenshot 2"/>
+  <img src="img/img (3).png" width="200" alt="Screenshot 3"/>
+  <img src="img/img (4).png" width="200" alt="Screenshot 4"/>
+</p>
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+<p align="center">
+  <img src="img/img (5).png" width="200" alt="Screenshot 5"/>
+  <img src="img/img (6).png" width="200" alt="Screenshot 6"/>
+  <img src="img/img (7).png" width="200" alt="Screenshot 7"/>
+  <img src="img/img (8).png" width="200" alt="Screenshot 8"/>
+</p>
 
-```sh
-# Using npm
-npm start
+## ✨ Features
 
-# OR using Yarn
-yarn start
+- **📸 Image-Based Evaluation** — Capture or upload images of question papers and answer sheets
+- **🤖 AI-Powered Grading** — GPT-4 Vision evaluates mathematical solutions step-by-step
+- **❌ Error Detection** — Identifies incorrect/partial answers with detailed explanations
+- **📚 Solution Guide** — Provides correct solutions with LaTeX-rendered math expressions
+- **📊 History Tracking** — Stores past evaluations for review and progress tracking
+- **🔐 Secure Auth** — JWT-based authentication system
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| **Frontend** | React Native, TypeScript, React Navigation, KaTeX |
+| **Backend** | FastAPI, Python, Pydantic |
+| **Database** | MongoDB (Motor async driver) |
+| **AI** | OpenAI GPT-4 Vision API |
+| **Auth** | JWT, bcrypt |
+
+## 📁 Project Structure
+
+```
+MathsEvaluator/
+├── backend/
+│   ├── app/
+│   │   ├── api/routes/      # Auth, evaluation, practice endpoints
+│   │   ├── core/            # LLM client, prompts, JWT
+│   │   ├── db/              # MongoDB connection
+│   │   ├── models/          # Pydantic schemas
+│   │   └── services/        # Business logic
+│   ├── Dockerfile
+│   └── requirements.txt
+│
+└── frontend/
+    └── src/
+        ├── screens/         # App screens
+        ├── components/      # Reusable UI
+        ├── context/         # Auth context
+        ├── services/        # API layer
+        └── theme/           # Styling
 ```
 
-## Step 2: Build and run your app
+## 🚀 Getting Started
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+### Prerequisites
 
-### Android
+- Python 3.10+
+- Node.js 20+
+- MongoDB
+- OpenAI API Key
 
-```sh
-# Using npm
+### Backend Setup
+
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # Linux/Mac
+
+pip install -r requirements.txt
+
+# Configure environment
+copy .env.example .env
+# Edit .env with your OPENAI_API_KEY and MONGODB_URI
+
+# Start server
+uvicorn app.main:app --reload
+```
+
+### Frontend Setup
+
+```bash
+cd frontend
+npm install
+
+# Android
 npm run android
 
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# iOS
+cd ios && pod install && cd ..
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 📡 API Endpoints
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | User registration |
+| POST | `/api/auth/login` | User login |
+| POST | `/api/evaluate` | Submit images for evaluation |
+| GET | `/api/evaluations` | Get evaluation history |
+| GET | `/api/evaluations/{id}` | Get specific evaluation |
+| GET | `/health` | Health check |
 
-## Step 3: Modify your app
+## 🔧 Environment Variables
 
-Now that you have successfully run the app, let's make changes!
+```env
+OPENAI_API_KEY=your_openai_api_key
+MONGODB_URI=mongodb://localhost:27017
+JWT_SECRET=your_jwt_secret
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## 📄 License
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+MIT License
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+---
 
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Built with ❤️ using React Native and FastAPI
